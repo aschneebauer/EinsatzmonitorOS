@@ -1,0 +1,8 @@
+var FFW={
+    elem:{
+
+    },
+    config:{
+
+    }
+};

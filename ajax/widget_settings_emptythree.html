@@ -1,0 +1,44 @@
+<div id="configurationModal" class="modal" tabindex="-1" role="dialog">
+    <div class="container modal-dialog modal-dialog__login" role="document">
+        <div class="container modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Einstellungen Text Widget</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 message message_error text-center">
+
+                        </div>
+                    </div>
+                </div>
+               <form type="post" autocomplete="off" id="emptyForm" action="db/dbFunctions.php">
+                   <div class="container">
+                       <button class="accordion active">Inhalt</button>
+                       <div class="panel" style="height: 500px; overflow: auto">
+                           <div class="container form-container panel-content">
+                               <div class="form-group">
+                                   <label for="exampleFormControlTextarea1">Geben Sie Ihren Inhalt ein</label>
+                                   <textarea class="form-control editor" id="emptytextarea" name="emptytextarea" rows="5" ></textarea>
+                                   <button id="btn-free-text" class="btn btn-primary">Speichern</button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <input type="hidden" name="widgetname" value="EMPTY-THREE">
+                   <input type="hidden" name="action" value="updateWidgetContent">
+               </form>
+            </div>
+
+            <div class="modal-footer">
+                <!--
+                <button type="button" class="btn btn-primary js-btn-saveconfiguration">Speichern</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

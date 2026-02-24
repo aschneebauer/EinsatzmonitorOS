@@ -1,0 +1,42 @@
+<div id="configurationModal" class="modal" tabindex="-1" role="dialog">
+    <div class="container modal-dialog modal-dialog__login" role="document">
+        <div class="container modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Einstellungen Eigene Alarmierungen</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 message message_error text-center">
+
+                        </div>
+                    </div>
+                </div>
+                <form autocomplete="off" id="configForm" action="db/dbFunctions.php">
+                    <div class="container">
+                        <button class="accordion active">Eigene Alarmierungen</button>
+                        <div class="panel">
+                            <div class="container form-container panel-content js-panel-content-own-input">
+
+                            </div>
+                            <div class="container form-container panel-content js-panel-content-own-chkb">
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <!--
+                <button type="button" class="btn btn-primary js-btn-saveconfiguration">Speichern</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

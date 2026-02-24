@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+    </script>
+</head>
+<body>
+<header>
+    <h3 style="margin:0px 15px; padding: 0">Konfiguration v1.1</h3>
+</header>
+<div id="contentConfig">
+    <div class="errorMsg" style="color: #c93638;margin-top:25px"></div>
+<form id="configForm" method="post" action="php/writeJson.php">
+    <fieldset style="margin-top:20px;">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1" class="navsettings">Generell</a></li>
+                <li><a href="#tabs-2" class="navsettings">Standardansicht</a></li>
+                <li><a href="#tabs-3" class="navsettings">Alarmansicht</a></li>
+                <li><a href="#tabs-4" class="navsettings">Test</a></li>
+            </ul>
+            <hr/>
+            <div id="tabs-1">
+               <table>
+                   <tr class="coloredresources">
+                       <td>Resourcen Farbe FW Portal Leiststelle:</td>
+                       <td><input id="coloredresources" type="checkbox" value="true" name="coloredresources">
+                       </td>
+                   </tr>
+                   <tr>
+                       <td><strong>Feuerwehr*:</strong></td>
+                       <td><input required name="firestation" id="firestation" type="text" value=""></td>
+                   </tr>
+                   <tr>
+                       <td><strong>Benutzer Leitstelle*:</strong></td>
+                       <td><input required name="userLeitstelle" id="userLeitstelle" type="text" value=""></td>
+                   </tr>
+                   <tr>
+                       <td><strong>Passwort Leitstelle*:</strong></td>
+                       <td><input required name="passLeitstelle" id="passLeitstelle" type="password" value=""></td>
+                   </tr>
+                   <tr>
+                       <td>Resourcen:</td>
+                       <td><input name="resourceStatus" id="resourceStatus" type="text" value=""></td>
+                   </tr>
+               </table>
+            </div>
+            <div id="tabs-2">
+                <table>
+                    <!--
+                    <tr>
+                        <td>Aktualisiere Monitor alle*:</td>
+                        <td><input name="checkAlarmAfter" id="checkAlarmAfter" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Akualisiere Alarme Tirol alle*:</td>
+                        <td><input name="refreshAlarmsTirol" id="refreshAlarmsTirol" type="text" value=""></td>
+                    </tr>
+                    -->
+                    <input name="refreshAlarmsTirol" id="refreshAlarmsTirol" type="hidden" value="">
+                    <input name="checkAlarmAfter" id="checkAlarmAfter" type="hidden" value="">
+                    <tr class="screensaverenabled">
+                        <td>Bildschirmschoner aktivieren:</td>
+                        <td><input id="screensaverenabled" type="checkbox" value="true" name="screensaverenabled">
+                        </td>
+                    </tr>
+                    <tr class="uwzenabled">
+                        <td>UWZ:</td>
+                        <td><input id="showUwz" type="checkbox" value="true" name="showUwz">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Eigene Alarmierungen anzeigen:</td>
+                        <td><input id="ownalarmsenabled" type="checkbox" value="true" name="ownalarmsenabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Alarmierungen Tirol anzeigen:</td>
+                        <td><input id="alarmstirolenabled" type="checkbox" value="true" name="alarmstirolenabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Max. Alarmierungen:</td>
+                        <td><input name="maxEvents" id="maxEvents" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Aktualisiere Resourcen alle*:</td>
+                        <td><input name="refreshResourceStatus" id="refreshResourceStatus" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Wasserstand 1:</td>
+                        <td><input name="waterlabelone" placeholder="Bsp: Pegel Telfs" id="waterlabelone" type="text" value=""></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input name="waterurlone" placeholder="https://apps.tirol.gv.at/hydro...." id="waterurlone" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Wasserstand 2:</td>
+                        <td><input name="waterlabeltwo" placeholder="Bsp: Pegel Telfs" id="waterlabeltwo" type="text" value=""></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input name="waterurltwo" placeholder="https://apps.tirol.gv.at/hydro...." id="waterurltwo" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Google Kalender URL:</td>
+                        <td><input name="googlecalendar" placeholder="https://calendar.google.com...." id="googlecalendar" type="text" value=""></td>
+                    </tr>
+                    <tr style="display: none; visibility: hidden">
+                        <td>Office 365 Kalender:</td>
+                        <td><input name="officecalendar" placeholder="https://outlook.live.com...." id="officecalendar" type="text" value=""></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="tabs-3">
+                <table>
+                    <tr class="ortho" style="display: none">
+                        <td>Satelliten Bilder</td>
+                        <td><input id="orthoenabled" type="checkbox" value="true" name="orthoenabled">
+                            <input id="orthokey" type="hidden" value="" name="orthokey">
+                        </td>
+                    </tr>
+                    <tr class="carpos" style="display: none">
+                        <td>Fahrzeug Positionen:</td>
+                        <td><input id="carposenabled" type="checkbox" value="true" name="carposenabled">
+                            <input id="carposkey" type="hidden" value="" name="carposkey">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OEI in OpenStreetMap:</td>
+                        <td><input name="showOEIOpenStreetMap" id="showOEIOpenStreetMap" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Karte Zoomstufe:</td>
+                        <td><input name="zoomlevel" id="zoomlevel" type="range" min="0" max="18" value="" ></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="tabs-4">
+                <table>
+                    <tr>
+                        <td>Alarmansicht aktivieren:</td>
+                        <td><input id="testalarmenabled" type="checkbox" value="true" name="testalarmenabled">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td></td>
+                <td><input id="submitConfig" type="submit" value="Speichern"></td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+    <p>
+        <br/>
+        * Achtung Zeitangaben sind alle in Millisekunden d.h. 60000= 1 Minute
+    </p>
+    <div class="msg" style="color: #c93638;"></div>
+</div>
+</body>
+</html>

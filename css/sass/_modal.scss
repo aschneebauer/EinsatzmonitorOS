@@ -1,0 +1,119 @@
+.modal-dialog{
+  &__login{
+    max-width: unset;
+  }
+}
+
+.modal-content{
+  font-size: 1.6rem;
+}
+
+.btn{
+  font-size: 1.4rem;
+  padding: 1rem 1.5rem;
+}
+
+.btn-primary {
+  background-color: #222;
+  border-color: #222;
+  &:hover, &:active{
+    background-color: black !important;
+    border-color: black !important;
+  }
+}
+
+.form-container{
+  width: 90%;
+  padding-top: 3rem;
+}
+
+.form-control{
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+
+.input-error{
+  border: 2px dotted darkred;
+}
+
+.message_error{
+  text-transform: uppercase;
+  color: red;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.message_ok, .message_OK {
+  text-transform: uppercase;
+  color: green;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.accordion {
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  border-bottom: 1px dotted white;
+}
+
+.accordion.active, .accordion:hover {
+  background-color: #222;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.panel-content {
+  padding: 20px 0;
+}
+
+label{
+  cursor: pointer;
+}
+
+.form-check-label{
+  padding-left: 1rem;
+}
+
+.showUserSmsModal{
+  &--trash{
+    cursor: pointer;
+  }
+}
+
+#filteredUsers{
+  max-height: 400px;
+  overflow-x: scroll;
+  tr{
+    width: 100%;
+  }
+  td{
+    width: auto;
+    padding: 5px 50px 5px 5px;
+  }
+}

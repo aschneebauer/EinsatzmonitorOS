@@ -1,0 +1,51 @@
+<div id="configurationModal" class="modal" tabindex="-1" role="dialog">
+    <div class="container modal-dialog modal-dialog__login" role="document">
+        <div class="container modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Einstellungen Google Kalender</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 message message_error text-center">
+
+                        </div>
+                    </div>
+                </div>
+                <form autocomplete="off" id="configForm" action="db/dbFunctions.php">
+                    <div class="container">
+                        <button class="accordion active">Google Kalender Widget</button>
+                        <div class="panel">
+                            <div class="container form-container panel-content js-panel-content-google-input">
+
+                            </div>
+                            <div class="container form-container panel-content js-panel-content-google-chkb">
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <p>
+                    So finden Sie Ihre Google Kalender ID:
+                    <ul>
+                    <li>Gehen sie auf Google Kalender</li>
+                    <li>Links unten sehen sie Ihre Kalender - entweder einen auswählen bzw. einen neu anlegen</li>
+                    <li>Auf den gewünschten Kalender klicken, und in der rechten Spalte den Punkt Kalender integrieren suchen</li>
+                    <li>Die Kalender ID rauskopieren und hier eintragen. Das wars</li>
+                    </ul>
+                </p>
+                <img src="images/dummy/calender.png" style="max-width: 100%">
+            </div>
+
+            <div class="modal-footer">
+                <!--
+                <button type="button" class="btn btn-primary js-btn-saveconfiguration">Speichern</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

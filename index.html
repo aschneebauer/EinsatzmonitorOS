@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+        <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="css/bootstrap.css">
+     <link rel="stylesheet" href="css/jquery-ui.min.css">
+     <link href="css/all.css" rel="stylesheet">
+     <link href="css/ol.css" rel="stylesheet">
+     <link href="css/style.css" rel="stylesheet">
+     <link href="css/custom.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Einsatzmonitor</title>
+</head>
+<body>
+<div class="container-fluid general-message js-general-message hidden">
+    <div class="row">
+        <div class="col-12 text-center">
+            LEITSTELLE MOMENTAN NICHT ERREICHBAR !!
+        </div>
+    </div>
+</div>
+<div class="container-fluid header">
+  <div class="row">
+    <div class="col-12 collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="ALARMS-TIROL"><img title="Aktuelle Alarmierungen" src="images/preview/akt.png"></div>
+        <!--
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="CALENDAR"><img title="Kalender" src="https://via.placeholder.com/140x100"></div>
+        -->
+        <!--
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="WATERLEVEL"><img title="Wasserstand" src="images/preview/chart.png"></div>
+        -->
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="RESOURCEN"><img title="Resourcen" src="images/preview/resourcen.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="UWZ"><img title="UWZ" src="images/preview/uwz.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="GOOGLE"><img title="Google Kalender" src="images/preview/google.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="OWN-ALARMS"><img title="Eigene Alarmierungen" src="images/preview/own.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="EMPTY-ONE"><img title="Eigene Alarmierungen" src="images/preview/water1.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="EMPTY-TWO"><img title="Eigene Alarmierungen" src="images/preview/water2.png"></div>
+        <div class="widget-preview" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="WEATHER"><img title="Aktuelles Wetter" src="images/preview/wheater.png"></div>
+        <div class="widget-preview widget-empty" draggable="true" ondragstart="FFW.layout.drag(event)" data-widgetname="EMPTY-THREE"><div class="text-center">Text Widget</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="row header__content">
+      <div class="col-12 col-xl-6">
+        <nav class="navbar navbar-dark">
+          <button class="navbar-toggler js-toggle-burger-menu" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="far fa-bars navbar__icon"></i>
+          </button>
+        </nav>
+        <div class="header__firestation">
+            <i class="fas fa-fire"></i> <span id="js-header-id__firestation" class="js-header__firestation">Feuerwehr</span>
+        </div>
+      </div>
+      <div class="col-12 col-xl-6 header__date text-center text-xl-right">
+            <div class="header__download js-header__download" style="display: none">
+                <a href="" class="header__download-link js-header__download-link" title="neues Update verfügbar">
+                    <i class="far fa-file-download header__download--icon"></i>
+                </a>
+            </div>
+            <div class="header__sms js-header__sms">
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle header__sms--dropdown" data-toggle="dropdown" href="#">
+                        <span class="far fa-comments header__sms--icon"></span>
+                    </a>
+                    <ul class="dropdown-menu header__sms--menu">
+                        <li class="header__sms--entry"><a class="js-header__addusersms" href="#">SMS Benutzer anlegen </a></li>
+                        <li class="header__sms--entry"><a class="js-header__addsmsgroup" href="#">SMS Gruppe verwalten</a></li>
+                        <li class="header__sms--entry"><a class="js-header__showusersms" href="#">SMS Benutzer verwalten</a></li>
+                        <li class="header__sms--entry"><a  class="js-header__testsms" href="#">SMS verschicken</a></li>
+                        <li class="header__sms--entry"><a  class="js-header__testsmsgroup" href="#">SMS an Gruppe verschicken</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header__settings">
+                <i title="Einstellungen bearbeiten" class="far fa-cog js-header__settings header__settings--icon"></i>
+            </div>
+            <!--
+            <div class="header__carorder">
+                <span class="fa-stack header__carorder-icon js-header__carorder" title="Ausrückorder bearbeiten">
+                  <i class="fal fa-book-alt fa-stack-2x"></i>
+                  <i class="fal fa-truck fa-stack-1x fa-inverse  header__carorder-icon--truck"></i>
+                </span>
+            </div>-->|
+            <div class="header__date--date">
+                <i class="fal fa-calendar-alt header__date-icon"></i> <span class="js-header__date">15.10.2018</span>
+            </div>
+            <div class="header__date--time">
+                <i class="fal fa-clock header__date-icon"></i> <span class="js-header__time">8:26</span>
+            </div>
+      </div>
+  </div>
+</div>
+<div class="container-standard js-standardcontent">
+<div class="screensaver js-screensaver">
+    <img class="screensaver__image img-responsive screensaver__image--active" src="images/screensaver/1.jpg" style="display: none">
+    <img class="screensaver__image img-responsive" src="images/screensaver/2.jpg" style="display: none">
+    <img class="screensaver__image img-responsive" src="images/screensaver/3.jpg" style="display: none">
+    <img class="screensaver__image img-responsive" src="images/screensaver/4.jpg" style="display: none">
+</div>
+<div class="container-fluid">
+    <div rownum="1" class="row js-widget-row">
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="TOP_LEFT"></div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="TOP_CENTER"></div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="TOP_RIGHT"></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div rownum="2" class="row js-widget-row">
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-6 slot text-center" data-slot="CONTENT-2_LEFT">
+
+        </div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-6 slot text-center" data-slot="CONTENT-2_RIGHT">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div  rownum="3" class="row js-widget-row">
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 slot" data-slot="FULL">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div rownum="4" class="row js-widget-row">
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="CONTENT-4_LEFT">
+        </div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="CONTENT-4_CENTER">
+        </div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-4 slot" data-slot="CONTENT-4_RIGHT">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div  rownum="5" class="row js-widget-row">
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-3 slot" data-slot="CONTENT-3_LEFT"></div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-3 slot" data-slot="CONTENT-3_LEFT-CENTER"></div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-3 slot" data-slot="CONTENT-3_RIGHT-CENTER"></div>
+        <div draggable="false" ondragstart="FFW.layout.drag(event)" ondrop="FFW.layout.drop(event)" ondragleave="FFW.layout.onDragLeave(event)" ondragover="FFW.layout.allowDrop(event)" class="col-12 col-xl-3 slot" data-slot="CONTENT-3_RIGHT"></div>
+    </div>
+</div>
+<div class="leistelle">
+    <img width="100" src="images/logo_leitstelle_tirol.gif">
+</div>
+
+<!--
+<footer>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+                    <div class="footer__logos">
+                        <ul>
+                            <li ><img width="70" src="images/logo_leitstelle_tirol.gif"></li>
+                        </ul>
+                    </div>
+        </div>
+    </div>
+</div>
+</footer>
+-->
+<!-- TEMPLATE SECTION -->
+
+<template id="uwzTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="UWZ" class="widget js-widget_nocalc widget__uwz">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+    <div data-widgetname="UWZ" class="widget widget__uwz" style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container">
+            <div class="row widget__uwz-entry text-center">
+                <div class="col-12">
+                    <img class="widget__uwz-image" title="{{altText}}" alt="{{altText}}" src="{{srcUrl}}">
+                </div>
+                <div class="col-12">
+                    <a href="{{uwzUrl}}" target="_blank" class="widget__uwz-link">{{uwzHeadline}}</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</template>
+
+<template id="weatherTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="WEATHER" class="widget js-widget_nocalc widget__weather">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+    <div data-widgetname="WEATHER" class="widget widget__weather"  style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container">
+            <div class="row widget__weather-entry text-center">
+                {{#content}}
+                        <div class="col-4">
+                        {{#weather}}
+                            <img src="images/weather/{{icon}}.png" class="widget__weather-image">
+                        {{/weather}}
+                        {{#main}}
+                            <div class="widget__weather-minmax">
+                                {{temp_min}} °C / {{temp_max}} °C
+                            </div>
+                        {{/main}}
+                        </div>
+                        <div class="col-8 text-left widget__weather-wrapper">
+                        {{#main}}
+                            <div class="widget__weather-temp">
+                                {{temp}} °C
+                            </div>
+                        {{/main}}
+                        <div class="widget__weather-description">
+                            <div class="widget__weather-info">{{#weather}}{{description}}{{/weather}}</div>
+                            <div class="widget__weather-wind">Wind: {{#wind}}{{speed}}{{/wind}} m/s</div>
+                            <div class="widget__weather-cloudy">wolkig: {{#clouds}}{{all}}{{/clouds}}%</div>
+                        </div>
+                        </div>
+
+                {{/content}}
+            </div>
+        </div>
+
+    </div>
+</div>
+</template>
+
+<template id="emptyOneTmpl">
+<div data-widgetname="EMPTY-ONE" class="widget widget__empty widget__empty--one">
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container-fluid">
+            <div class="row widget__empty-entry text-center">
+                <div class="col-12">
+                <iframe name="chartframe" id="chartframe"
+                        src="https://pegelalarm.at/paw/chart.html?commonid={{{commonid}}}&timeWindow=1day&lang=de&autoReloadMins=60&v={{version}}"
+                        width="100%" height="305px" style="border:0px" >
+                 </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<template id="emptyTwoTmpl">
+<div data-widgetname="EMPTY-TWO" class="widget widget__empty widget__empty--two">
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container-fluid">
+            <div class="row widget__empty-entry text-center">
+                <div class="col-12">
+                    <iframe name="chartframe" id="chartframe"
+                            src="https://pegelalarm.at/paw/chart.html?commonid={{{commonid}}}&timeWindow=1day&lang=de&autoReloadMins=60&v={{version}}"
+                            width="100%" height="305px" style="border:0px" >
+                     </iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</template>
+
+<template id="emptyThreeTmpl">
+<div data-widgetname="EMPTY-THREE" class="widget widget__empty widget__empty--three">
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container-fluid">
+            <div class="row widget__empty-entry">
+                <div class="col-12">
+                    {{{content}}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</template>
+
+<template id="googleTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="GOOGLE" class="widget js-widget_nocalc widget__empty widget__google">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+    <div data-widgetname="GOOGLE" class="widget widget__empty widget__google"  style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container-fluid">
+            <div class="row widget__empty-entry text-center">
+                <div class="col-12">
+                    <iframe
+                        src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode={{calender_mode}}&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src={{calender_id}}&amp;color=%232952A3&amp;ctz=Europe%2FVienna&amp;tmp={{timestamp}}"
+                        style="border-width:0;width: 100%"
+                        height="{{calender_height}}"
+                        frameborder="0"
+                        scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</template>
+
+<template id="waterlevelTmpl">
+    <div data-widgetname="WATERLEVEL" class="widget widget__water-chart">
+        <span class="widget__overlay"></span>
+        <div class="widget__actions" data-popup-url="ajax/settings.html">
+            <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+            <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+        </div>
+        <div id="1" class="widget__content"></div>
+    </div>
+</template>
+
+<template id="resourcenTmpl">
+
+{{#disableCalcHeight}}
+    <div data-widgetname="RESOURCEN" class="widget js-widget_nocalc widget__resource">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+    <div data-widgetname="RESOURCEN" class="widget widget__resource"  style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container ">
+            {{#resourceList}}
+                <div class="row">
+                {{#.}}
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="widget__resource-car widget__resource-car--standard widget__resource--{{STATUS}} text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status">
+                                {{CALL_SIGN}}<br>
+                                <hr class="widget__resource-spacer">
+                                {{STATUSINFO}}
+                         </div>
+                    </div>
+                </div>
+                {{/.}}
+                </div>
+            {{/resourceList}}
+            {{#isSlg}}
+                <hr class="widget__resource--hr">
+                {{#slgList}}
+                <div class="row">
+                {{#.}}
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="widget__resource-car widget__resource-car--standard widget__resource--{{STATUS}} text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status">
+                                {{CALL_SIGN}}<br>
+                                <hr class="widget__resource-spacer">
+                                {{STATUSINFO}}
+                         </div>
+                    </div>
+                </div>
+                {{/.}}
+                </div>
+                {{/slgList}}
+            {{/isSlg}}
+            {{^resourceList}}{{^slgList}}
+            <div class="row">
+                <div class="col-4">
+                    <div class="widget__resource-car widget__resource-car--standard widget__resource--available_at_station text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status">
+                                FW LF<br>
+                                <hr class="widget__resource-spacer">
+                                DEMO Frei auf Wache
+                         </div>
+                    </div>
+                </div>
+
+                 <div class="col-4">
+                     <div class="widget__resource-car widget__resource-car--standard widget__resource--available_at_station text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas fa-dolly-flatbed-empty fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <div class="widget__resource-car-name-status">
+                            FW Anhaenger<br>
+                            <hr class="widget__resource-spacer">
+                            DEMO frei auf Wache
+                        </div>
+                    </div>
+                 </div>
+
+
+                <div class="col-4">
+                <div class="widget__resource-car widget__resource-car--standard widget__resource--alarmed_at_station text-center">
+                    <span class="fa-stack fa-2x widget__resource-icon">
+                      <i class="fas fa-circle fa-stack-2x"></i>
+                      <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div class="widget__resource-car-name-status">
+                        FW KDO<br>
+                        <hr class="widget__resource-spacer">
+                        DEMO alarmiert auf wache
+                    </div>
+                </div>
+
+                </div>
+            </div>
+            {{/slgList}}{{/resourceList}}
+        </div>
+    </div>
+</div>
+</template>
+<template id="resourcenListTmpl">
+<div data-widgetname="RESOURCEN" class="widget widget__resource">
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content widget__content-list">
+        <div class="container">
+            {{#resourceList}}
+                <div class="row sortable">
+                {{#.}}
+                <div class="col-12 ui-state-default" data-id="{{ID}}">
+                    <div class="widget__resource-car widget__resource-car--standard-list widget__resource--{{STATUS}} text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon-list">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status-list">
+                             <div class="row">
+                                 <div class="col-6 text-center">{{CALL_SIGN}}</div>
+                                 <div class="col-6 text-center">{{STATUSINFO}}</div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                {{/.}}
+                </div>
+            {{/resourceList}}
+            {{#isSlg}}
+                <hr class="widget__resource--hr">
+                {{#slgList}}
+                <div class="row sortable">
+                {{#.}}
+                <div class="col-12 ui-state-default">
+                    <div class="widget__resource-car widget__resource-car--standard-list widget__resource--{{STATUS}} text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon-list">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status-list">
+                             <div class="row">
+                                 <div class="col-6 text-center">{{CALL_SIGN}}</div>
+                                 <div class="col-6 text-center">{{STATUSINFO}}</div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                {{/.}}
+                </div>
+                {{/slgList}}
+            {{/isSlg}}
+            {{^resourceList}}{{^slgList}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="widget__resource-car widget__resource-car--standard-list widget__resource--available_at_station text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon-list">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                        </span>
+                         <div class="widget__resource-car-name-status-list">
+                             <div class="row">
+                                 <div class="col-6 text-center">FW LF</div>
+                                 <div class="col-6 text-center">DEMO Frei auf Wache</div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                 <div class="col-12">
+                     <div class="widget__resource-car widget__resource-car--standard-list widget__resource--available_at_station text-center">
+                        <span class="fa-stack fa-2x widget__resource-icon-list">
+                          <i class="fas fa-circle fa-stack-2x"></i>
+                          <i class="fas fa-dolly-flatbed-empty fa-stack-1x fa-inverse"></i>
+                        </span>
+
+                        <div class="widget__resource-car-name-status-list">
+                        <div class="row">
+                            <div class="col-6 text-center">FW Anhaenger</div>
+                            <div class="col-6 text-center">DEMO frei auf Wache</div>
+                        </div>
+                        </div>
+                    </div>
+                 </div>
+
+
+                <div class="col-12">
+                <div class="widget__resource-car widget__resource-car--standard-list widget__resource--alarmed_at_station text-center">
+                    <span class="fa-stack fa-2x widget__resource-icon-list">
+                      <i class="fas fa-circle fa-stack-2x"></i>
+                      <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div class="widget__resource-car-name-status-list">
+                        <div class="row">
+                        <div class="col-6 text-center">FW KDO</div>
+                        <div class="col-6 text-center">DEMO alarmiert auf wache</div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+            {{/slgList}}{{/resourceList}}
+        </div>
+    </div>
+</div>
+</template>
+<template id="aktuelleTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="ALARMS-TIROL" class="widget js-widget_nocalc widget__tirol">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+<div data-widgetname="ALARMS-TIROL" class="widget widget__tirol"  style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container">
+            <div class="row widget__tirol-row">
+                {{#alarms}}
+                    <div class="col-12 col-xl-6 widget__tirol-entry">
+                        <div class="widget__tirol-image-wrapper">
+                            <img class="widget__tirol-image" title="Feed 1" src="{{NAME}}">
+                        </div>
+                        <div class="widget__tirol-description-wrapper">
+                            <h1>{{REMARK}}</h1>
+                            <span class="widget__tirol-description">
+                                {{ZIPCODE}} {{CITY}}
+                            </span><br>
+                            <span class="widget__tirol-firestation">
+                                  {{NAME_AT_ALARMTIME}}
+                            </span><br>
+                            <span class="widget__tirol-date">
+                                 <i class="far fa-calendar-alt"></i> {{ALARMTIME_FORMATTED}}
+                            </span>
+
+                        </div>
+                    </div>
+                {{/alarms}}
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<template id="aktuelleListTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="ALARMS-TIROL" class="widget js-widget_nocalc widget__tirol">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+<div data-widgetname="ALARMS-TIROL" class="widget widget__tirol"  style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container">
+            <div class="row widget__tirol-row">
+                {{#alarms}}
+                    <div class="col-12 widget__tirol-entry-list">
+                        <div class="widget__tirol-image-wrapper-list">
+                            <img class="widget__tirol-image-list" title="Feed 1" src="{{NAME}}">
+                        </div>
+                        <div class="widget__tirol-description-wrapper">
+                            <h1>
+                            <span class="widget__tirol-date">
+                                 <i class="far fa-calendar-alt"></i> {{ALARMTIME_FORMATTED}}
+                            </span>
+                             - {{REMARK}}
+                            </h1>
+                            <span class="widget__tirol-description">
+                                {{ZIPCODE}} {{CITY}}
+                                <span class="widget__tirol-firestation">
+                                      - {{NAME_AT_ALARMTIME}}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                {{/alarms}}
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<template id="ownTmpl">
+{{#disableCalcHeight}}
+    <div data-widgetname="OWN-ALARMS" class="widget js-widget_nocalc widget__tirol--own">
+{{/disableCalcHeight}}
+{{^disableCalcHeight}}
+<div data-widgetname="OWN-ALARMS" class="widget widget__tirol--own" style="height: {{storedHeight}}">
+{{/disableCalcHeight}}
+    <span class="widget__overlay"></span>
+    <div class="widget__actions" data-popup-url="ajax/settings.html">
+        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        <i title="Widget entfernen" class="far fa-trash-alt widget__trash js-widget__trash"></i>
+    </div>
+    <div class="widget__content">
+        <div class="container">
+            <div class="row widget__tirol-row">
+                {{#alarms}}
+                    <div class="col-6 widget__tirol-entry">
+                        <div class="widget__tirol-image-wrapper">
+                            <img class="widget__tirol-image" title="Feed 1" src="{{NAME}}">
+                        </div>
+                        <div class="widget__tirol-description-wrapper">
+                            {{#ISREMARK}}
+                                {{#eventtype}}
+                                    <h1>{{REMARK}}</h1>
+                                {{/eventtype}}
+                            {{/ISREMARK}}
+                            {{^ISREMARK}}
+                                {{#noasdata}}
+                                    <h1>{{ERGEBNIS_FW}}</h1>
+                                {{/noasdata}}
+                            {{/ISREMARK}}
+                            <span class="widget__tirol-description">
+                                  {{#eventpos}}
+                                       {{ZIPCODE}} {{CITY}}, {{STREET1}} {{HOUSENUMBER}}
+                                  {{/eventpos}}
+                            </span><br>
+                            <span class="widget__tirol-date">
+                                 <i class="far fa-calendar-alt"></i> {{ALARMTIME}}
+                            </span>
+
+                        </div>
+                    </div>
+                {{/alarms}}
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+</div>
+<div class="container-alarm view-alarm js-alarmcontent vs-hidden">
+    <div class="alarm-size js-alarm-size"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-xl-3">
+            <div data-widgetname="EVENTINFO" class="widget widget__event-info">
+                <span class="widget__overlay"></span>
+                <div class="widget__actions" data-popup-url="ajax/settings.html">
+                    <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+                </div>
+                <div id="map-small" class="widget__event-info--map d-none d-xl-block">
+                </div>
+                <div id="alarm-slot-1">
+
+                </div>
+            </div>
+
+            <div id="alarm-slot-2" class="alarm-slot-left">
+            </div>
+
+            <div id="alarm-slot-6" class="alarm-slot-left">
+            </div>
+
+            </div>
+            <div  class="col-12 col-xl-9">
+                <div id="alarm-slot-4">
+                </div>
+                <div data-widgetname="MAP" class="widget widget__map">
+                    <span class="widget__overlay"></span>
+                    <div class="widget__actions" data-popup-url="ajax/settings.html">
+                        <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+                    </div>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+        <div class="widget__alarm-info text-center">
+            <div class="row">
+                <div id="alarm-slot-3" class="col-6">
+                </div>
+                <div id="alarm-slot-5" class="col-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="alarminfoTmpl">
+    {{#event}}
+        {{#ISREMARK}}
+            {{#eventtype}}
+                <h2>{{REMARK}}</h2>
+            {{/eventtype}}
+        {{/ISREMARK}}
+        {{^ISREMARK}}
+            {{#noasdata}}
+                <h2>{{ERGEBNIS_FW}}</h2>
+            {{/noasdata}}
+        {{/ISREMARK}}
+        {{#INFO_TO_RESOURCES}}
+            <p>{{INFO_TO_RESOURCES}}</p>
+        {{/INFO_TO_RESOURCES}}
+        {{#noasdata}}
+            <P>{{BEMERKUNG}}</P>
+        {{/noasdata}}
+        <hr/>
+        {{#pos}}
+        {{ADDROBJNAME}}<br>
+        {{STREET1}} {{HOUSENUMBER}}<br>
+        {{ZIPCODE}} {{CITY}}<br>
+        {{INFO_LOCATION}}<br>
+        {{/pos}}
+    {{/event}}
+    </template>
+
+    <template id="alarmsizeTmpl">
+        <div data-widgetname="ALARM-SIZE" class="text-center alarm-size-content">
+            <h2>EINSATZ</h2>
+            <p>
+            {{content}}
+            </p>
+        </div>
+    </template>
+    <template id="acceptedTmpl">
+        <div data-widgetname="ACCEPTED" class="text-center alarm-size-content">
+            <h2>ZUGESAGT</h2>
+            <p>
+            {{content}}
+            </p>
+        </div>
+    </template>
+
+    <template id="additionalinfoTmpl">
+        <div data-widget="ADDITIONALINFO" class="widget widget__additional-info">
+            <h2>Mitalarmierte Resourcen:</h2>
+            <div class="row">
+            {{#resource}}
+                    <div class="col-6 widget__additional-info_col">{{NAME_AT_ALARMTIME}}</div>
+            {{/resource}}
+            </div>
+        </div>
+    </template>
+
+    <template id="acceptedMensInfoTmpl">
+        <div data-widget="ACCEPTED-MENS" class="widget widget__accepted_mens-info">
+            <h2>Zugesagt:</h2>
+            <div class="row">
+            {{#mens}}
+                    <div class="col-6 widget__accepted_mens-info_col">{{NAME}}</div>
+            {{/mens}}
+            </div>
+        </div>
+    </template>
+
+    <template id="resourceOverlayTmpl">
+    <div data-widgetname="RESOURCEN-OVERLAY" class="widget widget__resource-overlay">
+        <span class="widget__overlay"></span>
+        <div class="widget__actions" data-popup-url="ajax/settings.html">
+            <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+        </div>
+        <div class="widget__resource-overlay__content">
+            <div class="widget__content">
+                <div class="container">
+                    {{#resourceList}}
+                    <div class="row">
+                        {{#.}}
+                            <div class="col-6 widget__resource-car widget__resource--{{STATUS}} text-center">
+                                <span class="fa-stack fa-2x widget__resource-icon">
+                                  <i class="fas fa-circle fa-stack-2x"></i>
+                                  <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <div class="widget__resource-car-name-status">
+                                    {{CALL_SIGN}}<br>
+                                    <hr class="widget__resource-spacer">
+                                    {{STATUSINFO}}
+                                </div>
+                                <div style="display: none">
+                                    <div class="widget__resource-map" id="{{ID}}">
+                                        <div class="widget__resource-map-text-wrapper">
+                                                                                <span class="fa-stack fa-2x widget__resource-map-icon">
+                                                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                                                    <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                                                                                </span>
+                                        {{CALL_SIGN}}
+                                        </div>
+                                        <div class="widget__resource-map-square">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: none">
+                                    <div class="widget__resource-map" id="{{ID}}_small">
+                                        <div class="widget__resource-map-text-wrapper">
+                                                                                <span class="fa-stack fa-2x widget__resource-map-icon">
+                                                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                                                    <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                                                                                </span>
+                                        {{CALL_SIGN}}
+                                        </div>
+                                        <div class="widget__resource-map-square">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/.}}
+                     </div>
+                    {{/resourceList}}
+                    {{#isSlg}}
+                    <hr class="widget__resource--hr-overlay">
+                    {{#slgList}}
+                    <div class="row">
+                        {{#.}}
+                            <div class="col-6 widget__resource-car widget__resource--{{STATUS}} text-center">
+                                <span class="fa-stack fa-2x widget__resource-icon">
+                                  <i class="fas fa-circle fa-stack-2x"></i>
+                                  <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <div class="widget__resource-car-name-status">
+                                    {{CALL_SIGN}}<br>
+                                    <hr class="widget__resource-spacer">
+                                    {{STATUSINFO}}
+                                </div>
+                                <div style="display: none">
+                                    <div class="widget__resource-map" id="{{ID}}">
+                                        <div class="widget__resource-map-text-wrapper">
+                                                                                <span class="fa-stack fa-2x widget__resource-map-icon">
+                                                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                                                    <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                                                                                </span>
+                                        {{CALL_SIGN}}
+                                        </div>
+                                        <div class="widget__resource-map-square">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: none">
+                                    <div class="widget__resource-map" id="{{ID}}_small">
+                                        <div class="widget__resource-map-text-wrapper">
+                                                                                <span class="fa-stack fa-2x widget__resource-map-icon">
+                                                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                                                    <i class="fas fa-truck fa-stack-1x fa-inverse"></i>
+                                                                                </span>
+                                        {{CALL_SIGN}}
+                                        </div>
+                                        <div class="widget__resource-map-square">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/.}}
+                     </div>
+                     {{/slgList}}
+                    {{/isSlg}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </template>
+
+    <template id="resourceOverlayListTmpl">
+        <div data-widgetname="RESOURCEN-OVERLAY" class="widget widget__resource-overlay-list">
+            <span class="widget__overlay"></span>
+            <div class="widget__actions" data-popup-url="ajax/settings.html">
+                <i title="Einstellungen bearbeiten" class="far fa-cog widget__settings js-widget-settings"></i>
+            </div>
+            <div class="widget__resource-overlay__content">
+                <div class="widget__content">
+                    <div class="container">
+                        {{#resourceList}}
+                            <div class="row">
+                            {{#.}}
+                            <div class="col-12">
+                                <div class="widget__resource-car widget__resource-car--standard-list widget__resource--{{STATUS}} text-center">
+                                    <span class="fa-stack fa-2x widget__resource-icon-list">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                     <div class="widget__resource-car-name-status-list">
+                                         <div class="row">
+                                             <div class="col-6 text-center">{{CALL_SIGN}}</div>
+                                             <div class="col-6 text-center">{{STATUSINFO}}</div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                            {{/.}}
+                            </div>
+                        {{/resourceList}}
+                        {{#isSlg}}
+                        <hr class="widget__resource--hr-overlay">
+                        {{#slgList}}
+                            <div class="row">
+                            {{#.}}
+                            <div class="col-12">
+                                <div class="widget__resource-car widget__resource-car--standard-list widget__resource--{{STATUS}} text-center">
+                                    <span class="fa-stack fa-2x widget__resource-icon-list">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fas {{ICON}} fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                     <div class="widget__resource-car-name-status-list">
+                                         <div class="row">
+                                             <div class="col-6 text-center">{{CALL_SIGN}}</div>
+                                             <div class="col-6 text-center">{{STATUSINFO}}</div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                            {{/.}}
+                            </div>
+                         {{/slgList}}
+                        {{/isSlg}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </template>
+</div>
+
+
+<div class="js-modal-placeholder"></div>
+<div class="spacer-bottom"></div>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/globalVars.js"></script>
+    <script src="js/vendor/bundle.js"></script>
+    <script src="js/vendor/jquery-ui.min.js" ></script>
+    <!--
+    <script src="js/vendor/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <script src="js/vendor/popper.js"></script>
+    <script src="js/vendor/bootstrap-4.js"></script>
+    -->
+    <script src="js/vendor/mustache-3.0.0.js"></script>
+    <script src="js/ol.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

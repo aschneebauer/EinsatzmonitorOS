@@ -1,0 +1,808 @@
+.widget{
+  margin-top:1rem !important;
+  background-color: white;
+  position: relative;
+  max-width: 99%;
+  margin: auto;
+  z-index: 99;
+  @include shadowWidget();
+
+  &:not(:first-of-type){
+    margin-top: 4rem !important;
+  }
+
+  &__empty-entry{
+    padding: 1rem;
+  }
+
+  &__content {
+    min-height: 8rem;
+    &-list {
+      padding-bottom: 7rem;
+    }
+  }
+
+  &__resource-overlay{
+    z-index: 999;
+    padding: 1rem 1.5rem 3rem;
+    position: absolute;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 0 !important;
+    &__content{
+      color: white;
+    }
+  }
+
+  &__resource-overlay-list{
+    z-index: 999;
+    padding: 0 1.5rem 7rem;
+    width: 25%;
+    position: absolute;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 0 !important;
+    &__content{
+      color: white;
+    }
+  }
+
+  &__event-info{
+    padding: 3rem 2rem;
+    font-size: 1.8rem;
+    h2{
+      font-size: 2.2rem;
+    }
+
+    &--map{
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__additional-info{
+    font-size: 1.8rem;
+    padding: 3rem 2rem;
+    h2{
+      font-size: 2.2rem;
+    }
+    &_col{
+      word-wrap: break-word;
+    }
+  }
+
+  &__accepted_mens-info{
+    font-size: 1.8rem;
+    padding: 3rem 2rem;
+    h2{
+      font-size: 2.2rem;
+    }
+
+    &_col{
+      word-wrap: break-word;
+    }
+  }
+
+  &__alarm-info{
+    font-size: 1.8rem;
+    padding: 2rem 1rem;
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 50rem;
+    h2{
+      font-size: 2.2rem;
+    }
+  }
+
+  &__water-chart{
+    max-width: 75%;
+    height: 23rem;
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  &__twitter{
+    &-title-elem{
+      display: inline-block;
+      padding-right: 1rem;
+      padding-bottom: 1rem;
+    }
+    &-feed{
+      padding: 3rem 1.5rem;
+    }
+    &-subtitle{
+      font-weight: normal;
+      font-size: 1.4rem;
+    }
+    &-description{
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: justify;
+      @media only screen and (max-width: 3000px)  {
+        margin-top: 0;
+        font-size: 1.5rem;
+      }
+      @media only screen and (max-width: 2000px)  {
+        margin-top: 0;
+        font-size: 1.3rem;
+      }
+    }
+    &-social{
+      color: #be2313;
+      text-align: left;
+    }
+    &-image{
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    &-entry:not(:first-of-type){
+      padding-top: 4rem;
+    }
+    &-entry{
+      @media only screen and (max-width: 3000px) {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      @media only screen and (max-width: 2000px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  &__uwz {
+    padding: 3rem 1.5rem;
+    &-image{
+      max-width: 100%;
+    }
+    &-link{
+      color: #222;
+      font-size: 1.4rem;
+      font-weight: bold;
+      &:hover{
+        text-decoration: none;
+        color:black;
+      }
+    }
+  }
+
+  &__tirol{
+    padding: 3rem 1.5rem;
+    @media only screen and (max-width: 3000px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    @media only screen and (max-width: 2000px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &-image{
+      width: 100%;
+      border-radius: 50rem;
+    }
+    &-image-list{
+      max-width: 100%;
+      border-radius: 50rem;
+    }
+
+    &-entry {
+     padding-bottom: 4rem;
+    }
+
+    &-entry-list {
+      padding-bottom: 3rem;
+      padding-top: 3rem;
+      border-bottom: 1px dotted grey;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    &-image-wrapper{
+      width: 20%;
+      vertical-align: top;
+      height: 100%;
+    }
+
+    &-image-wrapper-list{
+      vertical-align: top;
+      display: inline-block;
+    }
+
+    &-description-wrapper{
+      width: 70%;
+      padding-left: 1.5rem;
+      text-align: left;
+    }
+    &-image-wrapper,&-description-wrapper{
+      display: inline-block;
+    }
+    &-description{
+      font-size: 1.8rem;
+      @media only screen and (max-width: 3000px)  {
+        font-size: 1.5rem;
+      }
+      @media only screen and (max-width: 2000px)  {
+        font-size: 1.3rem;
+      }
+    }
+    &-firestation{
+      color: red;
+    }
+  }
+
+
+  &__tirol--own{
+    padding: 3rem 1.5rem;
+    @media only screen and (max-width: 3000px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    @media only screen and (max-width: 2000px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &-image{
+      width: 100%;
+      border-radius: 50rem;
+    }
+    &-image-list{
+      max-width: 100%;
+      border-radius: 50rem;
+    }
+
+    &-entry {
+      padding-bottom: 4rem;
+    }
+
+    &-entry-list {
+      padding-bottom: 3rem;
+      padding-top: 3rem;
+      border-bottom: 1px dotted grey;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    &-image-wrapper{
+      width: 20%;
+      vertical-align: top;
+      height: 100%;
+    }
+
+    &-image-wrapper-list{
+      vertical-align: top;
+      display: inline-block;
+    }
+
+    &-description-wrapper{
+      width: 70%;
+      padding-left: 1.5rem;
+      text-align: left;
+    }
+    &-image-wrapper,&-description-wrapper{
+      display: inline-block;
+    }
+    &-description{
+      font-size: 1.8rem;
+      @media only screen and (max-width: 3000px)  {
+        font-size: 1.5rem;
+      }
+      @media only screen and (max-width: 2000px)  {
+        font-size: 1.3rem;
+      }
+    }
+    &-firestation{
+      color: red;
+    }
+  }
+
+
+  &__weather{
+
+    &-entry{
+      position: relative;
+    }
+
+    &-temp{
+      font-weight: bold;
+      font-size: 10rem;
+      margin-top: 1rem;
+
+      @media only screen and (max-width: 3000px)  {
+        font-size: 7rem;
+        bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1700px)  {
+          font-size: 4rem;
+      }
+      @media only screen and (max-width: 1200px)  {
+          font-size: 4rem;
+      }
+    }
+
+    &-wrapper{
+      padding-bottom: 2rem;
+
+      @media only screen and (max-width: 1700px)  {
+        padding-left: 5rem;
+      }
+      @media only screen and (max-width: 1200px)  {
+        padding-left: 5rem;
+      }
+    }
+
+    &-info{
+      font-weight: bold;
+      font-size: 5rem;
+
+      @media only screen and (max-width: 3000px)  {
+        font-size: 3.5rem;
+        bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1700px)  {
+        font-size: 2.6rem;
+      }
+      @media only screen and (max-width: 1200px)  {
+        font-size: 2.6rem;
+      }
+    }
+
+    &-wind, &-cloudy{
+      font-size: 3rem;
+      @media only screen and (max-width: 1700px)  {
+        font-size: 2.2rem;
+      }
+      @media only screen and (max-width: 1200px)  {
+        font-size: 2.2rem;
+      }
+    }
+
+    &-minmax{
+      font-size: 2.8rem;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      @media only screen and (max-width: 3000px)  {
+        font-size: 1.8rem;
+        bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1700px)  {
+        font-size: 1.6rem;
+        bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1200px)  {
+        font-size: 1rem;
+        bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1024px)  {
+        font-size: 2rem;
+        bottom: 20px;
+      }
+    }
+
+    &-image{
+      max-width: 100%;
+      position: absolute;
+      top: -7rem;
+      left: 50%;
+      transform: translate(-50%,0);
+
+      @media only screen and (max-width: 1023px)  {
+        max-width: 70%;
+      }
+
+      @media only screen and (min-width: 1024px)  {
+        max-width: 50%;
+      }
+
+      @media only screen and (max-width: 3000px)  {
+        top: -2rem;
+        max-width: 100%;
+      }
+
+      @media only screen and (max-width: 1700px)  {
+        top: -1rem;
+      }
+      @media only screen and (max-width: 1200px)  {
+        top: -1rem;
+      }
+      @media only screen and (min-width: 1200px) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__resource{
+    padding: 3rem 1.5rem;
+    &--default > span{
+      color: #be2313;
+      text-shadow: 2px 2px 3px #000;
+    }
+    &--default > div{
+      background-color: #be2313;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+    &--available_at_station > span,
+    &--reserved_at_station > span,
+    &--available_via_radio > span,
+    &--reserved_via_radio > span{
+      color: #1a7207;
+      text-shadow: 2px 2px 3px #000;
+    }
+    &--available_at_station > div,
+    &--reserved_at_station > div,
+    &--available_via_radio > div,
+    &--reserved_via_radio > div{
+      background-color: #1a7207;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    &--alarmed_at_station > span,
+    &--on_the_way > span
+    {
+      color: #fab730;
+      text-shadow: 2px 2px 3px #000;
+    }
+
+    &--alarmed_at_station > div,
+    &--on_the_way > div{
+      background-color: #fab730;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+    &--arrived > span,
+    &--arrived_at_event > span
+    {
+      color: #fc7023;
+      text-shadow: 2px 2px 3px #000;
+    }
+
+    &--arrived > div,
+    &--arrived_at_event > div{
+      background-color: #fc7023;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+    &--to_destination > span
+    {
+      color: #fc7ce2;
+      text-shadow: 2px 2px 3px #000;
+    }
+
+    &--to_destination > div{
+      background-color: #fc7ce2;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+    &--at_destination > span
+    {
+      color: #bf79ff;
+      text-shadow: 2px 2px 3px #000;
+    }
+    &--at_destination > div{
+      background-color: #bf79ff;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+    &--not_available > span,
+    &--pause_at_station > span,
+    &--pause_via_radio > span
+    {
+      color: #9B9B9B;
+      text-shadow: 2px 2px 3px #000;
+    }
+
+    &--not_available > div,
+    &--pause_at_station > div,
+    &--pause_via_radio > div
+    {
+      background-color: #9B9B9B;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+    &--inactive > span {
+      color: black;
+    }
+
+    &--inactive > div
+    {
+      background-color: black;
+      color: white;
+      text-shadow: 1px 1px 1px #000;
+      text-transform: uppercase;
+    }
+
+
+    &-icon {
+      position: relative;
+      top: .5rem;
+      display: inline-block;
+      font-size: 3rem;
+    }
+
+    &-icon-list {
+      position: relative;
+      display: inline-block;
+      font-size: 3rem;
+      height: unset;
+    }
+
+    &-map{
+      position: relative;
+      font-size: 1rem;
+
+      &-icon {
+        font-size: 1rem;
+        display: block;
+        color: #be2313;
+        margin: 0 auto
+      }
+
+      &-text-wrapper{
+        background-color:#be2313;
+        color: white;
+        border-radius: .3rem;
+        padding: .3rem;
+        font-weight: bold;
+      }
+      &-square{
+        width: 1.0rem;
+        height: 1.0rem;
+        background-color: #be2313;
+        transform: rotate(45deg);
+        margin:0 auto;
+        margin-top: -.5rem;
+      }
+    }
+
+    &-entry{
+      padding-bottom: 1rem;
+
+    }
+
+
+
+    &-line {
+      padding: .5rem;
+      margin-left: -2.2rem;
+      display: inline-block;
+      border-radius: .5rem;
+      width: 90%;
+      vertical-align: middle;
+      box-shadow: 2px 2px 3px #222;
+      @media only screen and (max-width: 1700px)  {
+        width: 85%;
+      }
+      @media only screen and (max-width: 1200px)  {
+        width: 65%;
+      }
+    }
+    &-firestation{
+      display: inline-block;
+      padding-left: 4rem;
+      font-size: 2rem;
+      width: 37%;
+      letter-spacing: .2rem;
+      @media only screen and (max-width: 2000px)  {
+        font-size: 1.5rem;
+        letter-spacing: .1rem;
+      }
+    }
+    &-status{
+      font-size: 2rem;
+      letter-spacing: .2rem;
+      width: 60%;
+      display: inline-block;
+      @media only screen and (max-width: 2000px)  {
+        font-size: 1.5rem;
+        letter-spacing: .1rem;
+      }
+    }
+
+    &-car{
+      position: relative;
+      & > div{
+        margin: auto;
+        padding-top: 1rem;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      &--standard{
+        box-shadow: 1px 1px 3px;
+        margin: .7rem;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        background-color: #f6f6f6;
+      }
+      &--standard-list{
+        height: 7rem;
+      }
+    }
+
+    &-spacer{
+      margin-left: 1rem;
+      margin-right: 1rem;
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+      border-bottom: 1px solid white;
+
+    }
+    &--hr{
+      border-top: 1px solid rgba(0,0,0,.3);
+      border-radius: 5px;
+      margin: 3rem 0;
+      &-overlay{
+        border-top: 1px solid white;
+        border-radius: 5px;
+        margin: 3rem 0;
+      }
+    }
+    &-car-name-status{
+      padding: .3rem;
+      border-radius: 5px;
+      font-size: 1.8rem;
+      @media only screen and (max-width: 2000px)  {
+        font-size: 1.3rem;
+      }
+      &-list {
+        padding: .3rem;
+        border-top-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+        font-size: 2.5rem;
+        @media only screen and (max-width: 2000px)  {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+}
+
+.widget div.widget__actions {
+  z-index: 999999999;
+  font-size: 5rem;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  & > i.far {
+    display: inline-block;
+    display: none;
+  }
+}
+
+.editmode {
+  .widget{
+    & > .widget__overlay{
+      transition-duration: 1s;
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+    }
+
+    &:hover > .widget__overlay{
+      z-index: 99999999;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #222;
+      opacity: 0.5;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &:hover > div.widget__actions > i.far{
+      display: inline-block;
+    }
+
+    div.widget__actions{
+      color: white;
+      opacity: 1.0;
+      cursor: pointer;
+    }
+
+    & div.widget__actions{
+      display: block;
+      & .widget__settings{
+        transition-duration: .5s;
+        transition-property: color, transform;
+      }
+      & .widget__trash{
+        transition-duration: .5s;
+        transition-property: color;
+      }
+      & .widget__settings:hover {
+        color: #222;
+        transform: rotate(360deg);
+      }
+      & .widget__trash:hover {
+        color: #222;
+      }
+    }
+  }
+  .spacer-bottom{
+    padding-bottom: 3rem;
+  }
+}
+
+/* Tooltip container */
+.carIcon {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.carIcon .carIconText {
+  width: 150px;
+  background-color: violet;
+  color: #fff;
+  text-align: center;
+  padding: 0.2rem 0;
+  border-radius: 6px;
+  border: 2px solid white;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -120px;
+}
+
+/* Tooltip arrow */
+.carIcon .carIconText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 80%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.widget.widget__map {
+  margin-top: 0 !important;
+  height: 100%;
+}
+
+.alarm-size-content{
+  background-color: white;
+  box-shadow: 2px 2px 3px;
+  padding: 0 3rem;
+}

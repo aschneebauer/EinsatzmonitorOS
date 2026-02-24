@@ -1,0 +1,301 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.5rem;
+  background-image: url("../images/standard.jpg");
+  background-size: cover;
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.view-alarm {
+  background-image: none;
+  background-color: #f6f6f6;
+}
+
+.header{
+  padding: 1.5rem 1rem;
+  color: white;
+  background-color: #222;
+  font-size: 1.9rem;
+
+  &__firestation {
+    display: inline-block;
+    padding-left: 1rem;
+  }
+
+  &__firestation-edit {
+    padding-top: .7rem;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding-top: 0.5rem;
+  }
+  &__date {
+    padding-right: 4rem;
+  }
+  &__date--date{
+    display: inline-block;
+    padding-right: 2rem;
+  }
+  &__settings{
+    display: inline-block;
+    padding-right: .5rem;
+    cursor: pointer;
+    &--icon{
+      margin-top: 5px;
+      transition-duration: 2s;
+      transition-property: transform;
+      transform-origin: center center;
+      &:hover{
+        transform: rotate(360deg);
+      }
+    }
+  }
+  &__carorder{
+    display: inline-block;
+    padding-right: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &-icon{
+      vertical-align: bottom;
+      font-size: 1rem;
+      &--truck{
+        margin-top: -1px;
+      }
+    }
+
+    &--icon{
+      margin-right: 2rem;
+      transition-duration: 2s;
+      transition-property: transform;
+      transform-origin: center center;
+    }
+  }
+  
+  &__sms{
+    display: none;
+    cursor: pointer;
+    &-link{
+      color: white;
+      font-size: 2rem;
+      &:hover{
+        color: yellow;
+      }
+    }
+    &--icon{
+      color: white;
+      padding-right: 0.5rem;
+      font-size: 2rem;
+    }
+    &--dropdown{
+      color: white;
+      outline: none;
+      border: 0;
+      &:focus, &:active, &:hover, &:link, &:visited{
+        outline: none;
+        outline:0 !important;
+        border: none;
+        outline-color: #222 !important;
+        box-shadow: none !important;
+      }
+    }   
+    &--menu{
+      background-color:#222;
+      padding: 20px 10px 10px 10px;
+
+    } 
+    &--entry{
+      width: 180px;
+      margin-bottom: 1rem;
+      & a{
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        &:hover{
+          color: $color-red;
+        }
+      }
+    }
+  }
+  &__download{
+    display: inline-block;
+    padding-right: 2rem;
+    cursor: pointer;
+    &-link{
+      color: yellow;
+      font-size: 2rem;
+      &:hover{
+        color: yellow;
+      }
+    }
+    &--icon{
+      padding-right: 2rem;
+    }
+  }
+  &__date--time{
+    display: inline-block;
+  }
+
+  &__date-icon{
+    padding-right: .5rem;
+  }
+}
+
+.editmode .slot{
+  padding: 2rem;
+  border: 2px solid grey;
+}
+
+.slot {
+  margin-bottom: 0;
+}
+
+.widget-preview{
+  display: inline-block;
+  cursor: grab;
+  & > img{
+    width: 14rem;
+    height: 10rem;
+  }
+}
+
+.widget-empty{
+  border: 1px solid white;
+  background-color: grey;
+  vertical-align: middle;
+  & > div{
+    width: 14rem;
+    height: 10rem;
+    line-height: 10rem;
+  }
+}
+
+.screensaver{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+  z-index: 9999;
+  display: none;
+  overflow: hidden;
+
+  &--active{
+    display: block;
+  }
+
+  &--active-image{
+    display: block !important;
+  }
+}
+
+.screensaver__image{
+  margin:auto;
+  width: 100%;
+  &--active{
+    display: block !important;
+  }
+}
+
+.snippets__pre{
+  background-color: #f6f6f6;
+  font-size: 1.5rem;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  background-color: #222;
+  height: 8rem;
+  color: #fff;
+  width: 100%;
+  & .footer__logos{
+    display: inline-block;
+    & ul{
+      margin: 0;
+      padding: 0;
+      & li {
+        margin: 0;
+        padding: 1rem;
+        text-decoration: none;
+        list-style-type: none;
+      }
+    }
+  }
+}
+
+.leistelle{
+  position: absolute;
+  bottom: 4rem;
+  right: 4rem;
+}
+
+#configurationModal{
+  z-index: 9999;
+}
+
+.hidden{
+  display: none;
+}
+
+.alarm-size{
+  color: white;
+  background-color: black;
+}
+
+.alarm-slot-left:not(:first-of-type) {
+  margin-top: 2rem !important;
+}
+
+.ol-zoom.ol-unselectable.ol-control {
+  top: 20px;
+  left: 20px;
+  position: absolute;
+  & button{
+    display: block;
+    border: none;
+    color:white;
+    background-color: #222;
+    margin-top: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.ol-attribution {
+  display: none !important;
+}
+
+.vs-hidden{
+  visibility: hidden;
+}
+
+.vs-show{
+  visibility: visible;
+}
+
+.general-message{
+  color: #c93638;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 25px;
+}
+
+.ui-state-default{
+  border: inherit;
+  background: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+#navbarToggleExternalContent {
+  transition-duration: .5s;
+  transition-timing-function: linear;
+  transition-property: all;
+}

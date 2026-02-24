@@ -1,0 +1,60 @@
+<div id="addUserSmsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="container modal-dialog modal-dialog__login" role="document">
+        <div class="container modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">SMS Benutzer hinzufügen</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 message message_error text-center">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 message message_ok text-center">
+
+                        </div>
+                    </div>                    
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>Hier können sie die Benutzer unter Gruppen unterteilen, die in den Ressourcen vorkommen</strong>
+                        </div>
+                    </div>
+                </div>
+                <form id="addUserSmsForm" action="db/dbFunctions.php">
+                <div class="container form-container">
+                    <div class="form-group" id="alarm_group_container">
+                    </div>                    
+                    <div class="form-group">
+                        <input required name="name" id="name" type="text" class="form-control logininput" placeholder="Max Mustermann"/>
+                    </div>
+                    <div class="form-group">
+                        <input required name="phone" id="phone" type="text" class="form-control logininput" placeholder="eg.: +436504454933"/>
+                    </div>
+                    <div class="form-group">
+                        <div id="filteredUsers" style="overflow-x: hidden;">
+
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="action" value="addUserSms">
+                <div class="container">
+
+                </div>                
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary js-btn-addusersms">Benutzer anlegen</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
